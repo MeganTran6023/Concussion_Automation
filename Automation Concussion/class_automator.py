@@ -56,26 +56,37 @@ class ConcussionAutomator:
         print(f"Average Days to Clearance for patients recovered exactly one month and over: {round(avg_bucket2,2)}\n")
 
     #output results
+    #fixed time tracking, only tracked time for prnt statements which was why it output 0 ms.
+    #this now track time for each function  execute
     def run(self):
-        start_time = time.time()
-        end_time = time.time() 
-        elapsed_time = end_time - start_time
-        
-        start_time_cpu = time.process_time() # CPU time
-        end_time_cpu = time.process_time() # End of CPU time
-        elapsed_time_cpu_ms = (end_time_cpu - start_time_cpu) * 1000
-        
         print("Concusion Patient Dataset Analyzer")
         print("---------------------------------------")
+
+        start_time = time.time()
+        self.clean_data()
+        end_time = time.time()
+        elapsed_time_clean = (end_time - start_time) * 1000
+
+        start_time = time.time()
+        self.bucket_count()
+        end_time = time.time()
+        elapsed_time_bucket = (end_time - start_time) * 1000
+
+        print("---------------------------------------")
+
+        start_time = time.time()
+        self.avg_buckets_d2c()
+        end_time = time.time()
+        elapsed_time_avg = (end_time - start_time) * 1000
+
+        start_time_cpu = time.process_time()
         self.clean_data()
         self.bucket_count()
-        print("---------------------------------------")
         self.avg_buckets_d2c()
-        elapsed_time_ms = (end_time - start_time) * 1000  # Calculate in milliseconds
-#add time taken to run program
-        print(f"\nTime taken for script: {elapsed_time_ms:.6f} milliseconds")  # More decimal places
+        end_time_cpu = time.process_time() 
+        elapsed_time_cpu_ms = (end_time_cpu - start_time_cpu) * 1000
+
+        print(f"\nTime taken for clean_data: {elapsed_time_clean:.6f} milliseconds")
+        print(f"Time taken for bucket_count: {elapsed_time_bucket:.6f} milliseconds")
+        print(f"Time taken for avg_buckets_d2c: {elapsed_time_avg:.6f} milliseconds")
         print(f"CPU time taken for script: {elapsed_time_cpu_ms:.6f} milliseconds")
-
-
-
-
