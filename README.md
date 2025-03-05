@@ -18,5 +18,10 @@ This can be done with command
 git repo https://github.com/MeganTran6023/Concussion_Automation
 ```
 
-2) Move into Concussion_Automation folder using cd 
+2) Move into Concussion_Automation/Automation Concussion folder using cd 
 
+3) Run the main.py file.
+
+## Note on Application
+
+The csv file used must match the columns of the sample file in this project folder.
